@@ -21,7 +21,7 @@ public class UserService {
         }
         return users;
     }
-
+//this method saves
     public void save(User user) throws UserNotFoundException {
         String[] tagNames = user.getTagString().split(",");
         List<Tag> newTags = new ArrayList<>();
