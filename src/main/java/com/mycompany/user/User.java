@@ -25,7 +25,7 @@ public class User {
     @Column(length=150, name="note")
     private String note;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Tag> tags = new ArrayList<>();
 
     public User(){
@@ -55,6 +55,16 @@ public class User {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    private String newTag;
+
+    public String getNewTag() {
+        return newTag;
+    }
+
+    public void setNewTag(String newTag) {
+        this.newTag = newTag;
     }
 
     public void addTag(Tag tag){

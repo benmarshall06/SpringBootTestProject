@@ -16,7 +16,7 @@ public class Tag {
     @Column
     private String occupation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
