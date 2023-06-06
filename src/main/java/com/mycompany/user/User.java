@@ -71,6 +71,16 @@ public class User {
         tags.add(tag);
     }
 
+    private String deleteTags;
+
+    public String getDeleteTags() {
+        return deleteTags != null ? deleteTags : "";
+    }
+
+    public void setDeleteTags(String deleteTags) {
+        this.deleteTags = deleteTags;
+    }
+
     public Integer getId() {
         return id;
     }

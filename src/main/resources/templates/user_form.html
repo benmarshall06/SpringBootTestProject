@@ -51,10 +51,16 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Tags</label>
                 <div class="col-sm-8">
-                    <select class="form-control" id="deleteTags" name="deleteTags[]" multiple>
-                        <!-- Generate options dynamically from the existing tags -->
-                        <option th:each="tag : ${user.tags}" th:value="${tag.name}" th:text="${tag.name}"></option>
-                    </select>
+                    <div th:each="tag, tagStatus : ${user.tags}">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" th:id="'deleteTags' + ${tagStatus.index}" name="deleteTags[]" th:value="${#strings.replace(tag.name, '|', '&#124')}">
+                            <label class="form-check-label" th:for="'deleteTags' + ${tagStatus.index}" th:text="${tag.name}"></label>
+                        </div>
+                    </div>
+
+
+
+
                     <div class="padding-30"/>
 
                     <small class="form-text text-muted">Select tags to delete.</small>

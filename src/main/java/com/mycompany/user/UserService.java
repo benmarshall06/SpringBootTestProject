@@ -28,18 +28,18 @@ public class UserService {
     @Transactional
     // This method saves the user
     public void save(User user) throws UserNotFoundException {
-        String[] deleteTags = user.getTagsString().split(",");
+        String[] deleteTags = user.getDeleteTags().split("\\|");
+        System.out.println("deleteTags = " + deleteTags);
         String newTag = user.getNewTag();
 
         // Delete selected tags
         if (deleteTags != null && deleteTags.length > 0) {
             for (String deleteTag : deleteTags) {
-                System.out.println("deleteTags = " + deleteTag);
-                user.getTags().removeIf((tag -> tag.getName().equalsIgnoreCase(deleteTag)));
+                user.getTags().removeIf(tag -> tag.getName().equalsIgnoreCase(deleteTag));
                 tagRepo.deleteByNameIgnoreCase(deleteTag);
             }
-        }
 
+        }
         // Add new tag
         if (newTag != null && !newTag.isEmpty()) {
             Tag tag = new Tag(newTag);
